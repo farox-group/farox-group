@@ -1,0 +1,300 @@
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Check, ArrowRight, Shield, Rocket, Cpu, LineChart, Globe2, Cloud, BookOpen, Bot, Zap } from "lucide-react";
+
+export default function FaroXLanding() {
+  const [language, setLanguage] = useState<"az" | "en">("az");
+
+  const t = (az: string, en: string) => (language === "az" ? az : en);
+
+  const brand = {
+    name: "FaroX Group",
+    sloganEn: "Trade. Build. Grow.",
+    sloganAz: "Ağıllı sistemlər, real nəticələr.",
+    colors: {
+      bg: "bg-[#0A0B0F]", // charcoal
+      card: "bg-[#0F1117]",
+      accent: "from-[#00B2FF] via-[#3A7CFF] to-[#7A5CFF]", // neon blue gradient
+      text: "text-slate-200",
+      subtext: "text-slate-400",
+      ring: "ring-[#00B2FF]/40",
+    },
+  };
+
+  const services = [
+    {
+      icon: <LineChart className="h-6 w-6" />,
+      titleAz: "Trading botlar & siqnallar",
+      titleEn: "Trading bots & signals",
+      descAz:
+        "Avtomatlaşdırılmış treydinq alətləri, risk‑idarəetmə və backtest ilə icarə və abunə modeli.",
+      descEn:
+        "Automated trading tools with risk management, backtests, rental and subscription plans.",
+      tag: "FaroX Trade",
+    },
+    {
+      icon: <Globe2 className="h-6 w-6" />,
+      titleAz: "Veb saytlar & SEO",
+      titleEn: "Websites & SEO",
+      descAz:
+        "Performanslı saytlar, sürətli hosting, strukturlaşdırılmış SEO və analitika ilə böyümə.",
+      descEn:
+        "High‑performance websites, fast hosting, structured SEO and analytics for growth.",
+      tag: "FaroX Web",
+    },
+    {
+      icon: <Cpu className="h-6 w-6" />,
+      titleAz: "Proqram təminatı & ERP",
+      titleEn: "Software & ERP",
+      descAz:
+        "Biznes prosesləri üçün fərdi tətbiqlər, API inteqrasiya, ERP/CRM qurulumu.",
+      descEn:
+        "Custom apps for business processes, API integrations, ERP/CRM setup.",
+      tag: "FaroX Soft",
+    },
+    {
+      icon: <Cloud className="h-6 w-6" />,
+      titleAz: "Bulud & avtomatlaşdırma",
+      titleEn: "Cloud & automation",
+      descAz:
+        "Bot hostinqi, CI/CD, Telegram/WhatsApp botları və 24/7 monitorinq.",
+      descEn:
+        "Bot hosting, CI/CD, Telegram/WhatsApp automations and 24/7 monitoring.",
+      tag: "FaroX Cloud",
+    },
+    {
+      icon: <BookOpen className="h-6 w-6" />,
+      titleAz: "Təlim & abunələr",
+      titleEn: "Education & subscriptions",
+      descAz:
+        "FaroX Academy: treydinq, SEO və avtomatlaşdırma üzrə praktiki kurslar.",
+      descEn:
+        "FaroX Academy: practical courses in trading, SEO and automation.",
+      tag: "FaroX Academy",
+    },
+    {
+      icon: <Bot className="h-6 w-6" />,
+      titleAz: "AI & blockchain (R&D)",
+      titleEn: "AI & blockchain (R&D)",
+      descAz:
+        "Ağıllı modellər, siqnal analizi, token & smart‑contract pilotları.",
+      descEn:
+        "Intelligent models, signal analytics, token & smart‑contract pilots.",
+      tag: "FaroX TechLab",
+    },
+  ];
+
+  const perks = [
+    { icon: <Shield className="h-5 w-5" />, textAz: "Şəffaflıq və təhlükəsizlik", textEn: "Transparency & security" },
+    { icon: <Rocket className="h-5 w-5" />, textAz: "Sürət və performans", textEn: "Speed & performance" },
+    { icon: <Zap className="h-5 w-5" />, textAz: "Avtomatlaşdırma mərkəzli", textEn: "Automation‑first" },
+  ];
+
+  return (
+    <div className={`${brand.colors.bg} ${brand.colors.text} min-h-screen w-full`}> 
+      {/* NAV */}
+      <header className="sticky top-0 z-40 border-b border-white/5 backdrop-blur supports-[backdrop-filter]:bg-black/30">
+        <div className="mx-auto max-w-7xl px-4 py-3 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <LogoMark />
+            <span className="font-semibold tracking-tight">{brand.name}</span>
+            <Badge className="ml-2 bg-transparent border border-white/10 text-slate-400">{t("Beta", "Beta")}</Badge>
+          </div>
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" className="text-slate-300 hover:text-white" onClick={() => setLanguage("az")}>AZ</Button>
+            <Button variant="ghost" className="text-slate-300 hover:text-white" onClick={() => setLanguage("en")}>EN</Button>
+            <Button className="bg-gradient-to-r from-cyan-500 to-indigo-500 text-white">{t("Demo istəyin", "Request demo")}</Button>
+          </div>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+        <GridGlow />
+        <div className="mx-auto max-w-7xl px-4 py-20 lg:py-28 relative">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-xs text-slate-400 mb-6">
+              <span>{t("Rəqəmsal texnologiyalar və avtomatlaşdırma", "Digital technology & automation")}</span>
+            </div>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-[1.1]">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400">{brand.name}</span>
+            </h1>
+            <p className="mt-4 text-lg text-slate-300">
+              {brand.sloganEn} · {brand.sloganAz}
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <Button className="bg-gradient-to-r from-cyan-500 to-indigo-500 text-white">
+                {t("İndi başlayın", "Get started")} <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+              <Button variant="outline" className={`${brand.colors.ring} border-white/10 text-slate-200 hover:bg-white/5`}>
+                {t("Portfelə bax", "View portfolio")}
+              </Button>
+            </div>
+            <div className="mt-8 flex gap-4 text-sm text-slate-400">
+              {perks.map((p, i) => (
+                <div key={i} className="flex items-center gap-2">
+                  {p.icon}
+                  <span>{t(p.textAz, p.textEn)}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="mx-auto max-w-7xl px-4 py-10 lg:py-14">
+        <div className="mb-8 flex items-end justify-between">
+          <div>
+            <h2 className="text-2xl md:text-3xl font-bold">{t("Xidmətlər", "Services")}</h2>
+            <p className={`${brand.colors.subtext} mt-1`}>{t("Biznesinizi sürətləndirən modullar", "Modular blocks that accelerate your business")}</p>
+          </div>
+          <div className="hidden md:flex gap-2">
+            <Badge className="bg-transparent border border-white/10 text-slate-400">FaroX Trade</Badge>
+            <Badge className="bg-transparent border border-white/10 text-slate-400">FaroX Web</Badge>
+            <Badge className="bg-transparent border border-white/10 text-slate-400">FaroX Cloud</Badge>
+          </div>
+        </div>
+
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {services.map((s, idx) => (
+            <Card key={idx} className={`${brand.colors.card} border-white/10 hover:border-cyan-500/30 transition-all`}>
+              <CardHeader>
+                <div className={`inline-flex items-center justify-center h-10 w-10 rounded-xl bg-gradient-to-br ${brand.colors.accent} text-white shadow-lg shadow-cyan-500/10`}>{s.icon}</div>
+                <CardTitle className="mt-4 text-lg font-semibold">
+                  {t(s.titleAz, s.titleEn)}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className={`${brand.colors.subtext}`}>{t(s.descAz, s.descEn)}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  <Badge className="bg-transparent border border-white/10 text-slate-400">{s.tag}</Badge>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      {/* PRICING / PLANS */}
+      <section className="mx-auto max-w-7xl px-4 pb-16">
+        <h2 className="text-2xl md:text-3xl font-bold">{t("Abunə planları", "Subscription plans")}</h2>
+        <p className={`${brand.colors.subtext} mt-1 mb-8`}>{t("Sadə. Şəffaf. Dəyərli.", "Simple. Transparent. Valuable.")}</p>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          <PriceCard
+            title={t("Başlanğıc", "Starter")}
+            price="19"
+            features={[t("SEO audit & yol xəritəsi", "SEO audit & roadmap"), t("Aylıq 1 siqnal paketi", "1 signal pack / month"), t("E‑posta dəstək", "Email support")]}
+          />
+          <PriceCard
+            highlighted
+            title={t("Pro", "Pro")}
+            price="49"
+            features={[t("Trading bot demo + risk pre-set", "Trading bot demo + risk presets"), t("Aylıq 3 siqnal paketi", "3 signal packs / month"), t("Prioritet dəstək", "Priority support")]}
+          />
+          <PriceCard
+            title={t("Biznes", "Business")}
+            price="99"
+            features={[t("Sayt + SEO + CRM paketi", "Website + SEO + CRM bundle"), t("Bot hostinqi (24/7)", "Bot hosting (24/7)"), t("Məsləhət & təlim", "Consulting & training")]}
+          />
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="relative border-t border-white/5">
+        <div className="mx-auto max-w-7xl px-4 py-14">
+          <div className="rounded-3xl border border-white/10 p-8 md:p-12 bg-gradient-to-br from-cyan-500/10 via-indigo-500/10 to-transparent">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+              <div>
+                <h3 className="text-2xl md:text-3xl font-bold">{t("Bir demo ilə başlayın", "Start with a quick demo")}</h3>
+                <p className={`${brand.colors.subtext} mt-2`}>{t("Sizin üçün uyğun modulu seçək və 7 gün sınayın.", "Pick the right module and try for 7 days.")}</p>
+              </div>
+              <div className="flex gap-3">
+                <Button className="bg-gradient-to-r from-cyan-500 to-indigo-500 text-white">{t("Demo istəyin", "Request demo")}</Button>
+                <Button variant="outline" className={`${brand.colors.ring} border-white/10 text-slate-200 hover:bg-white/5`}>{t("Əlaqə", "Contact")}</Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-white/5">
+        <div className="mx-auto max-w-7xl px-4 py-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <LogoMark small />
+              <div>
+                <p className="font-semibold">{brand.name}</p>
+                <p className="text-sm text-slate-400">{brand.sloganEn} · {brand.sloganAz}</p>
+              </div>
+            </div>
+            <div className="text-sm text-slate-400">© {new Date().getFullYear()} FaroX Group. {t("Bütün hüquqlar qorunur.", "All rights reserved.")}</div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+function PriceCard({ title, price, features, highlighted }: { title: string; price: string; features: string[]; highlighted?: boolean }) {
+  return (
+    <Card className={`relative ${highlighted ? "ring-2 ring-cyan-400/60" : ""} bg-[#0F1117] border-white/10 hover:border-cyan-500/30 transition-all rounded-2xl`}> 
+      {highlighted && (
+        <span className="absolute -top-3 left-4 rounded-full bg-gradient-to-r from-cyan-500 to-indigo-500 px-3 py-1 text-xs font-semibold text-white shadow-md">RECOMMENDED</span>
+      )}
+      <CardHeader>
+        <CardTitle className="text-xl">{title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-end gap-1">
+          <span className="text-4xl font-extrabold">${price}</span>
+          <span className="text-slate-400 mb-2">/mo</span>
+        </div>
+        <ul className="mt-4 space-y-2 text-sm text-slate-300">
+          {features.map((f, i) => (
+            <li key={i} className="flex items-start gap-2"><Check className="mt-0.5 h-4 w-4 text-cyan-400" /> {f}</li>
+          ))}
+        </ul>
+        <Button className="mt-6 w-full bg-gradient-to-r from-cyan-500 to-indigo-500 text-white">Choose plan</Button>
+      </CardContent>
+    </Card>
+  );
+}
+
+function LogoMark({ small = false }: { small?: boolean }) {
+  return (
+    <div className={`relative ${small ? "h-7 w-7" : "h-10 w-10"}`}>
+      {/* Stylized F/X mark */}
+      <svg viewBox="0 0 100 100" className="h-full w-full">
+        <defs>
+          <linearGradient id="fxg" x1="0" x2="1">
+            <stop offset="0%" stopColor="#00B2FF" />
+            <stop offset="50%" stopColor="#3A7CFF" />
+            <stop offset="100%" stopColor="#7A5CFF" />
+          </linearGradient>
+        </defs>
+        <path d="M12 86 L12 16 L60 16 Q72 16 72 28 L72 40 Q72 52 60 52 L34 52 L34 66 L56 66 Q68 66 68 78 L68 86 Z" fill="url(#fxg)"/>
+        <path d="M78 16 L92 16 L52 86 L38 86 Z" fill="url(#fxg)" opacity="0.9" />
+      </svg>
+    </div>
+  );
+}
+
+function GridGlow() {
+  return (
+    <div className="pointer-events-none absolute inset-0">
+      <div className="absolute inset-0 opacity-[0.07]" style={{
+        backgroundImage:
+          "linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px)",
+        backgroundSize: "50px 50px, 50px 50px",
+        backgroundPosition: "-1px -1px",
+      }} />
+      <div className="absolute -top-24 left-1/2 -translate-x-1/2 h-72 w-[36rem] rounded-full blur-3xl bg-gradient-to-r from-cyan-600/30 via-indigo-600/30 to-transparent" />
+    </div>
+  );
+}
